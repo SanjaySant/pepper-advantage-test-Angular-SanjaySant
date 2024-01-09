@@ -1,0 +1,109 @@
+<div class="main-content">
+    <section class="login-section">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-7">
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-8">
+                            <form class="form w-100" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                <div class="login-form-section">
+                                    <h3 class="black-color login-title mt-3"> Welcome </h3>
+                                    <h3 class="black-color login-Subtitle">Please enter your Email and password below to
+                                        login.</h3>
+
+                                    <div class="row">
+                                        <div class=" col-md-6 form-group mb-3">
+                                            <label class="login-label" for="">Email </label>
+                                            <input type="email" class="form-control " placeholder="Enter Email Address"
+                                                [formControlName]="'email'" required>
+                                            <div class="mat-error" *ngIf="isControlHasError('email','required')">
+                                                Email is required
+                                            </div>
+                                            <div class="mat-error" *ngIf="isControlHasError('email','email')">
+                                                Please enter valis email address
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group mb-4">
+                                            <label class="login-label" for="">Password</label>
+                                            <div class="pass-section">
+                                                <input type="password" class="form-control "
+                                                    placeholder="Enter Password" [formControlName]="'password'"
+                                                    [type]="_shown ? 'text' : 'password'" required>
+                                                <div (click)="toggle()" *ngIf="_shown"
+                                                    class="input-group-addon password-show-icon">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </div>
+                                                <div (click)="toggle()" *ngIf="!_shown"
+                                                    class="input-group-addon password-show-icon">
+                                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                </div>
+
+                                            </div>
+
+                                            <div>
+                                                <div class="mat-error" *ngIf="isControlHasError('password','required')">
+                                                    Password is required.</div>
+                                                <div class="mat-error"
+                                                    *ngIf="isControlHasError('password','minlength')">
+                                                    Password must be at least 6 characters long.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-start mb-4 d-flex">
+                                        <input type="checkbox" checked> <span class="ml-2">Remember me</span>
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-primary w-25" value="Login">
+                                            Login</button>
+                                    </div>
+
+                                    <div class="text-start mt-3">
+                                        <p class="new-create-link">Forgot your
+                                            <a href="javascript:void(0)">password?</a>
+                                        </p>
+                                    </div>
+
+                                    <div class="text-start mt-3">
+                                        <p class="new-create-link">If you forgot your registered Email, contact us at
+                                            0818 81 81 81 <br>
+                                            To resend Validation Email <a href="javascript:void(0)">click here.</a>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <b>Don't have an account?</b>
+                                    </div>
+
+                                    <p class="mt-2">
+                                        When you register for Horizon Portal, you’ll have access to update your personal
+                                        information, view your mortgage accounts, transaction history, make payments and
+                                        complete forms.
+                                    </p>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-primary px-4" value="Register">
+                                            Register <i class="fa fa-user-plus ml-2" aria-hidden="true"></i> </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="login-img-section d-flex justify-content-center align-items-center">
+                        <div class="text-center">
+                            <img width="80%" src="../../../../assets/images/login-Frame 4210.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>

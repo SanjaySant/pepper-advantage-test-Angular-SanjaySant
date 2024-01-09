@@ -1,0 +1,11 @@
+.fa {
+  color: darkgray !important;
+}
+
+.select-star {
+  color: #002841 !important;
+}
+
+.fa-star {
+    cursor: pointer;
+  }

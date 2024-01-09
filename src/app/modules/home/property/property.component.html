@@ -1,0 +1,123 @@
+<div class="main-content">
+    <section class="login-section">
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-8">
+
+                    <div class="login-form-section">
+                        <a [routerLink]="['/home']" routerLinkActive="router-link-active">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i> <span class="ml-2 fs-8">Back</span>
+                        </a>
+                    </div>
+
+                    <form class="form w-100" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+                        <div class="login-form-section">
+
+                            <h3 class="black-color login-title mt-3"> {{title | titlecase }} Property </h3>
+                            <h3 class="black-color login-Subtitle">Please complete the form below to add the new
+                                property
+                            </h3>
+
+                            <div class=" col-md-12 form-group mb-3">
+                                <label class="login-label" for="">Image </label>
+                                <input type="file" class="form-control " placeholder="Enter Amount"
+                                    (change)="handleFileInput($event)" [(ngModel)]="Image_ForDisplay"
+                                    [ngModelOptions]="{standalone: true}" required>
+                                <div *ngIf="image && (image.dirty || image.touched)">
+                                    <div class="mat-error" *ngIf="image.hasError('required')">User Name is required.
+                                    </div>
+                                </div>
+                                <div *ngIf="isShow_SelectedImage" class="col-md-12">
+                                    <div class="py-3">
+                                        <img width="20%" [src]="Image_ForDisplay" alt="Uploaded Doccument">
+                                    </div>
+                                </div>
+
+                                <div *ngIf="!isShow_SelectedImage && getImage != '' " class="py-3">
+                                    <img width="25%" class="mb-3" [src]="getImage" alt="Uploaded Doccument">
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class=" col-md-6 form-group mb-3">
+                                    <label class="login-label" for="">Amount </label>
+                                    <input type="number" class="form-control " placeholder="Enter Amount"
+                                        [formControlName]="'amount'" required>
+                                    <div *ngIf="amount && (amount.dirty || amount.touched)">
+                                        <div class="mat-error" *ngIf="amount.hasError('required')"> Amount is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group mb-4">
+                                    <label class="login-label" for="">Category</label>
+                                    <div class="pass-section">
+                                        <select class="form-control form-select" placeholder="Select Category"
+                                            [formControlName]="'category'" required>
+                                            <option value="" selected disabled>Select Category</option>
+                                            <option value="House">House</option>
+                                            <option value="Flat">Flat</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="category && (category.dirty || category.touched)">
+                                        <div class="mat-error" *ngIf="category.hasError('required')"> Category is
+                                            required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class=" col-md-6 form-group mb-3">
+                                    <label class="login-label" for="">Feedback </label>
+                                    <br>
+                                    <span *ngFor="let i of [1, 2, 3, 4, 5];" (click)="toggleStar(i)">
+                                        <span class="fa fa-star fs-5 me-1"
+                                            [ngClass]="{'select-star': i <= selectedStars}"></span>
+                                    </span>
+                                    <div *ngIf="Feedback && (Feedback.dirty || Feedback.touched)">
+                                        <div class="mat-error" *ngIf="Feedback.hasError('required')"> Feedback is
+                                            required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group mb-4">
+                                    <label class="login-label" for="">Status</label>
+                                    <div class="pass-section">
+                                        <select class="form-control form-select" placeholder="Select Status"
+                                            [formControlName]="'status'" required>
+                                            <option value="" selected disabled>Select Status</option>
+                                            <option value="Available">Available</option>
+                                            <option value="Sold">Sold</option>
+                                            <option value="Under Offer">Under Offer</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="status && (status.dirty || status.touched)">
+                                        <div class="mat-error" *ngIf="status.hasError('required')"> Status is
+                                            required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div>
+                                <button type="submit" class="btn btn-primary w-25" value="Submit">
+                                    Submit</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>

@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.mat-error {
+  color: red !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  margin-left: 6px !important;
+  margin-top: 3px !important;
+  text-align: left !important;
+}
+
+/* set custom color to toatsr */
+.ngx-toastr {
+  margin-top: 8px !important;
+  border-radius: 10px !important;
+  /* background-color: #333333 !important; */
+  color: rgba(255, 255, 255, 0.87) !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
