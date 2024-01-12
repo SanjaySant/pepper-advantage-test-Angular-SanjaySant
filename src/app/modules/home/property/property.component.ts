@@ -19,6 +19,7 @@ export class PropertyComponent {
   getImage: any = '';
   isShow_SelectedImage: boolean = false;
   Image_ForDisplay: any;
+  propertyData: any;
 
   constructor(
     private router: Router, private activateRoute: ActivatedRoute, private toastr: ToastrService,
@@ -35,6 +36,7 @@ export class PropertyComponent {
       // get Property Data
       this.subscription = this.authService.getPackageData().subscribe(data => {
         console.log('property data:', data);
+        this.propertyData = data;
         if (data != null && this.title == 'edit') {
           this.propertyForm.patchValue({
             amount: data.amount,
@@ -95,7 +97,7 @@ export class PropertyComponent {
   }
 
   onSubmit() {
-    console.log(this.propertyForm.value);
+    // console.log(this.propertyForm.value);
 
     if (this.propertyForm.invalid) {
       console.log('Form is invalid.');
@@ -111,10 +113,46 @@ export class PropertyComponent {
         return;
       }
     } else {
-      console.log('Form submitted:', this.propertyForm.value);
+      // console.log('Form submitted:', this.propertyForm.value);
       this.toastr.success(`Property ${this.title}  Successfully ..!`, "", {
         timeOut: 2000,
       });
+
+      let data; let id; let posted_date;
+      if (this.title == 'new') {
+        // create id increamented ny one
+        let items = this.authService.getItems();
+        id = items.length + 1;
+        posted_date = getFormattedDate();
+      } else {
+        id = this.propertyData.id;
+        posted_date = this.propertyData.posted_date;
+      }
+
+      data = {
+        id: id,
+        posted_date: posted_date,
+        image: '../../../../assets/images/Rectangle 1.png',
+        amount: this.propertyForm.value.amount,
+        category: this.propertyForm.value.category,
+        reviews: this.selectedStars,
+        status: this.propertyForm.value.status,
+      }
+      // console.log('req data:', data);
+
+      this.authService.setData(data, this.title);
+      this.router.navigate(['/home']);
+
+      function getFormattedDate() {
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, '0'); // Ensures two digits (e.g., '01')
+        const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+        const year = today.getFullYear();
+
+        const formattedDate = `${day}.${month}.${year}`;
+        return formattedDate;
+      }
+
     }
   }
 

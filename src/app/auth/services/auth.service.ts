@@ -38,4 +38,27 @@ export class AuthService {
     return this.items;
   }
 
+  setData(data: any, title: any) {
+    console.log('@@data:', data);
+
+    if (title == 'new') {
+      this.items.push(data);
+    } else {
+      const itemToUpdate = this.items.find(item => item.id === data.id); // Replace this with your condition
+
+      if (itemToUpdate) {
+        // Update the properties of the item
+        itemToUpdate.id = data.id;
+        itemToUpdate.posted_date = data.posted_date;
+        itemToUpdate.image = data.image;
+        itemToUpdate.amount = data.amount;
+        itemToUpdate.category = data.category;
+        itemToUpdate.reviews = data.reviews;
+        itemToUpdate.status = data.status;
+      }
+    }
+
+    console.log('item', this.items);
+  }
+
 }
